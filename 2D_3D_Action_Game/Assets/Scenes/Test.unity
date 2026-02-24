@@ -4736,12 +4736,13 @@ MonoBehaviour:
   DecelerationRate: 10
   RotationSmoothTime: 0.12
   TurnStopDuration: 0.02
-  JumpHeight: 3
-  Gravity: -20
+  JumpHeight: 2.5
+  Gravity: -30
   MaxJumpHeldTime: 0.4
-  TopFloatMultiplier: 0.1
+  TopFloatMultiplier: 1
+  TopFloatDuration: 4.5
   FallMultiplier: 2
-  JumpCutMultiplier: 1
+  JumpCutMultiplier: 0.5
   AirControl: 0.5
   Grounded: 1
   GroundedOffset: -0.14

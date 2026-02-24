@@ -25,11 +25,12 @@ namespace StarterAssets
 
         [Header("Mario Jump Physics")]
         public float JumpHeight = 3.0f;
-        public float Gravity = -35.0f;
+        public float Gravity = -30.0f;
         public float MaxJumpHeldTime = 0.4f;
-        public float TopFloatMultiplier = 0.1f;
+        [Range(0f, 1f)] public float TopFloatMultiplier = 0.1f; // スライダー化
+        [Range(0f, 10f)] public float TopFloatDuration = 4.5f;
         public float FallMultiplier = 2.5f;
-        public float JumpCutMultiplier = 1f;
+        public float JumpCutMultiplier = 0.5f;
 
         [Header("Air Control")]
         [Tooltip("0 = 完全慣性（空中で制御不能）, 1 = 地上と同じ制御力")]
@@ -129,11 +130,18 @@ namespace StarterAssets
 
                 if (isJumpPressedNow && _isJumpInputReady && _jumpTimeoutDelta <= 0.0f)
                 {
+                    // ジャンプ開始：初速を与える
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
                     if (_hasAnimator) { _animator.SetBool(_animIDJump, true); _animator.Play("JumpStart", 0, 0f); }
-                    _isJumpProcessing = true; _isJumpInputReady = false; _jumpButtonHeldTime = 0.0f; _jumpTimeoutDelta = JumpTimeout;
+
+                    _isJumpProcessing = true;
+                    _isJumpInputReady = false;
+                    _jumpButtonHeldTime = 0.0f;
+                    _jumpTimeoutDelta = JumpTimeout;
                 }
+
                 if (_jumpTimeoutDelta >= 0.0f) _jumpTimeoutDelta -= Time.deltaTime;
+                // 地面にいる時はわずかに押し下げる力を維持
                 if (_verticalVelocity < 0.0f) _verticalVelocity = -2f;
             }
             else
@@ -144,28 +152,50 @@ namespace StarterAssets
                 if (!isJumpPressedNow) _isJumpInputReady = true;
             }
 
+            // --- 重力計算ロジック ---
             float currentGravity = Gravity;
-            if (_isJumpProcessing)
+
+            if (_verticalVelocity < 0)
             {
-                if (isJumpPressedNow)
+                // 1. 落下中：FallMultiplierをかけて素早く落とす
+                currentGravity *= FallMultiplier;
+            }
+            else if (_verticalVelocity > 0)
+            {
+                // 2. 上昇中
+                if (_isJumpProcessing)
                 {
-                    _jumpButtonHeldTime += Time.deltaTime;
-                    if (_verticalVelocity > 0)
+                    if (isJumpPressedNow)
                     {
-                        if (_verticalVelocity < 5.0f) currentGravity *= TopFloatMultiplier;
-                        else currentGravity *= 0.6f;
+                        // 長押し中：上昇重力を軽減して高く飛ぶ
+                        _jumpButtonHeldTime += Time.deltaTime;
+                        currentGravity *= 0.6f;
+                        if (_jumpButtonHeldTime > MaxJumpHeldTime) _isJumpProcessing = false;
                     }
-                    if (_jumpButtonHeldTime > MaxJumpHeldTime) _isJumpProcessing = false;
+                    else
+                    {
+                        // --- 最小ジャンプの「すとん」感を作る ---
+                        // ボタンを離した瞬間、JumpCutMultiplier (0.1など) で速度を削る
+                        _verticalVelocity *= JumpCutMultiplier;
+                        // 上昇処理を強制終了して、即座に落下重力がかかる状態にする
+                        _isJumpProcessing = false;
+                    }
                 }
-                else
+
+                // --- 頂点付近の「ふわっと」処理 ---
+                // 最大まで溜めて、かつボタンを押し続けている時のみ発動
+                if (!_isJumpProcessing && isJumpPressedNow && _verticalVelocity < TopFloatDuration)
                 {
-                    if (_verticalVelocity > 0) _verticalVelocity *= JumpCutMultiplier;
-                    _isJumpProcessing = false;
+                    currentGravity *= TopFloatMultiplier;
                 }
             }
 
-            if (!_isJumpProcessing || _verticalVelocity < 0) currentGravity *= FallMultiplier;
-            if (_verticalVelocity < _terminalVelocity) _verticalVelocity += currentGravity * Time.deltaTime;
+            // 【重要】ここで重力を速度に加算する（これが消えていたため、ずっと上昇していました）
+            if (_verticalVelocity < _terminalVelocity)
+            {
+                _verticalVelocity += currentGravity * Time.deltaTime;
+            }
+
             _input.jump = false;
         }
 
