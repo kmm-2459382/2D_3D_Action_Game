@@ -4742,7 +4742,7 @@ MonoBehaviour:
   TopFloatMultiplier: 0.1
   FallMultiplier: 2
   JumpCutMultiplier: 1
-  AirControl: 0.25
+  AirControl: 0.5
   Grounded: 1
   GroundedOffset: -0.14
   GroundedRadius: 0.28
