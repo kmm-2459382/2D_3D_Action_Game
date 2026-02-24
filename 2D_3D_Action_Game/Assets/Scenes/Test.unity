@@ -4737,12 +4737,12 @@ MonoBehaviour:
   RotationSmoothTime: 0.12
   TurnStopDuration: 0.02
   JumpHeight: 3
-  Gravity: -35
+  Gravity: -20
   MaxJumpHeldTime: 0.4
   TopFloatMultiplier: 0.1
   FallMultiplier: 2
   JumpCutMultiplier: 1
-  AirControl: 0.5
+  AirControl: 0.25
   Grounded: 1
   GroundedOffset: -0.14
   GroundedRadius: 0.28

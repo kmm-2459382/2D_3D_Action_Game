@@ -169,54 +169,73 @@ namespace StarterAssets
             _input.jump = false;
         }
 
+        private Vector3 _horizontalVelocity;
+
         private void Move()
         {
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
             float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
-            float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
-
             if (Grounded)
             {
+                // 地上での回転処理
                 if (_input.move != _lastMoveInput && _input.move != Vector2.zero) _turnStopTimer = TurnStopDuration;
                 _lastMoveInput = _input.move;
+                if (_turnStopTimer > 0) { _turnStopTimer -= Time.deltaTime; targetSpeed = 0f; }
 
-                if (_turnStopTimer > 0) { _turnStopTimer -= Time.deltaTime; targetSpeed = 0f; _speed = 0f; }
+                if (_input.move != Vector2.zero)
+                {
+                    Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+                    _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
+                }
 
+                // 地上での回転適用
+                float currentRotation = transform.eulerAngles.y;
+                float angleDiff = Mathf.Abs(Mathf.DeltaAngle(currentRotation, _targetRotation));
+                if (angleDiff > 0.1f)
+                {
+                    float rotation = Mathf.SmoothDampAngle(currentRotation, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
+                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                }
+
+                // 地上での速度計算（Lerpで加速・減速）
+                float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
                 float currentRate = (targetSpeed > currentHorizontalSpeed) ? AccelerationRate : DecelerationRate;
                 _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * currentRate);
+
+                // 地上では現在の向きに向かって進む
+                _horizontalVelocity = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward * _speed;
             }
             else
             {
-                _speed = Mathf.Lerp(_speed, targetSpeed * inputMagnitude, Time.deltaTime * AccelerationRate * AirControl);
+                // --- 空中での処理（ここが重要） ---
+
+                // 1. 空中での向き更新（AirControlが0でも向きだけは変えられるようにする場合）
+                if (_input.move != Vector2.zero)
+                {
+                    Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+                    _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
+                }
+                float currentRotation = transform.eulerAngles.y;
+                float rotSpeed = RotationSmoothTime / Mathf.Max(0.1f, AirControl); // 回転もAirControlの影響を受ける
+                float rotation = Mathf.SmoothDampAngle(currentRotation, _targetRotation, ref _rotationVelocity, rotSpeed);
+                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+
+                // 2. 空中での移動ベクトルの計算
+                // 入力方向への目標ベクトル
+                Vector3 targetInputDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+
+                // 現在の慣性ベクトルに対して、入力方向への力を AirControl 越しに加える
+                // AirControl が 0 なら、この Lerp は現在の速度を維持し続ける
+                _horizontalVelocity = Vector3.Lerp(_horizontalVelocity, targetInputDirection * targetSpeed * inputMagnitude, Time.deltaTime * AccelerationRate * AirControl);
             }
 
             _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * AccelerationRate);
             if (_animationBlend < 0.01f) _animationBlend = 0f;
 
-            // --- 方向（回転）の計算 ---
-            if (_input.move != Vector2.zero)
-            {
-                // 入力がある場合は、カメラの向きに基づいた目標角度を更新
-                Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-                _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
-            }
-
-            // 現在の角度と目標角度に差がある場合は、入力の有無にかかわらず回転を続ける
-            float currentRotation = transform.eulerAngles.y;
-            float angleDiff = Mathf.Abs(Mathf.DeltaAngle(currentRotation, _targetRotation));
-
-            if (angleDiff > 0.1f) // わずかな誤差を除いて回転が必要な場合
-            {
-                float rotSpeed = Grounded ? RotationSmoothTime : (RotationSmoothTime / Mathf.Max(0.1f, AirControl));
-                float rotation = Mathf.SmoothDampAngle(currentRotation, _targetRotation, ref _rotationVelocity, rotSpeed);
-                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-            }
-
-            // 移動の実行
-            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            // 最終的な移動実行（水平ベクトルの _horizontalVelocity + 垂直ベクトルの _verticalVelocity）
+            _controller.Move(_horizontalVelocity * Time.deltaTime + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
             if (_hasAnimator) { _animator.SetFloat(_animIDSpeed, _animationBlend); _animator.SetFloat(_animIDMotionSpeed, inputMagnitude); }
         }
