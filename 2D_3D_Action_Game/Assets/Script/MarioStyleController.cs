@@ -7,9 +7,9 @@ namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM
-    [RequireComponent(typeof(PlayerInput))]
+    [RequireComponent(typeof(PlayerInput))]
 #endif
-    public class MarioStyleController : MonoBehaviour
+    public class MarioStyleController : MonoBehaviour
     {
         [Header("Player - Movement")]
         public float MoveSpeed = 8.0f;
@@ -47,10 +47,24 @@ namespace StarterAssets
         public float WaterSprintSpeed = 7.0f;
         public float WaterVerticalSpeed = 4.0f;
         private bool _isInWater = false;
+        [Tooltip("水面検知の高さ（足元からのオフセット）")]
+        public float WaterSurfaceDetectionHeight = 0.98f;
 
         [Header("Water Settings - Physics")]
         public float WaterVerticalAcceleration = 10.0f;
         public float WaterSurfaceOffset = 0.5f;
+
+        [Header("Collider Settings")]
+        public float DefaultColliderHeight = 1.5f;
+        public Vector3 DefaultColliderCenter = new Vector3(0, 0.4f, 0);
+
+        [Header("Water Collider Settings")]
+        // 水中Idle（立ち泳ぎ）用
+        public float WaterIdleHeight = 1.5f;
+        public Vector3 WaterIdleCenter = new Vector3(0, 0.4f, 0);
+        // 水中Swimming（水平）用
+        public float WaterSwimHeight = 0.6f;
+        public Vector3 WaterSwimCenter = new Vector3(0, 0.4f, 0);
 
         private int _animIDInWater;
         [Header("Settings & Audio")]
@@ -77,11 +91,11 @@ namespace StarterAssets
         private int _animIDSpeed, _animIDGrounded, _animIDJump, _animIDFreeFall, _animIDMotionSpeed;
 
 #if ENABLE_INPUT_SYSTEM
-        private PlayerInput _playerInput;
+        private PlayerInput _playerInput;
         private InputAction _jumpAction;
 #endif
 
-        private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
+        private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
         private void Awake() { if (_mainCamera == null) _mainCamera = GameObject.FindGameObjectWithTag("MainCamera"); }
 
         private void Start()
@@ -91,10 +105,10 @@ namespace StarterAssets
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM
-            _playerInput = GetComponent<PlayerInput>();
+            _playerInput = GetComponent<PlayerInput>();
             _jumpAction = _playerInput.actions["Jump"];
 #endif
-            AssignAnimationIDs();
+            AssignAnimationIDs();
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
         }
@@ -105,6 +119,28 @@ namespace StarterAssets
             GroundedCheck();
             JumpAndGravity();
             Move();
+            UpdateCollider();
+        }
+
+        private void UpdateCollider()
+        {
+            if (!_isInWater)
+            {
+                // 地上ではデフォルトサイズに滑らかに戻す
+                _controller.height = Mathf.Lerp(_controller.height, DefaultColliderHeight, Time.deltaTime * 5f);
+                _controller.center = Vector3.Lerp(_controller.center, DefaultColliderCenter, Time.deltaTime * 5f);
+                return;
+            }
+
+            // 水中では移動速度（_animationBlend）に応じてIdle用とSwim用をブレンドする
+            // _animationBlend は 0(Idle) から WaterMoveSpeed(Swim) の値をとる
+            float swimWeight = Mathf.Clamp01(_animationBlend / WaterMoveSpeed);
+
+            float targetHeight = Mathf.Lerp(WaterIdleHeight, WaterSwimHeight, swimWeight);
+            Vector3 targetCenter = Vector3.Lerp(WaterIdleCenter, WaterSwimCenter, swimWeight);
+
+            _controller.height = Mathf.Lerp(_controller.height, targetHeight, Time.deltaTime * 5f);
+            _controller.center = Vector3.Lerp(_controller.center, targetCenter, Time.deltaTime * 5f);
         }
 
         private void LateUpdate() => CameraRotation();
@@ -138,7 +174,9 @@ namespace StarterAssets
                 _fallTimeoutDelta = FallTimeout;
                 float targetVerticalSpeed = 0;
                 //水面の高さ上限の設定
-                bool isNearSurface = !Physics.CheckSphere(transform.position + Vector3.up * 0.98f, 0.3f, LayerMask.GetMask("Water"), QueryTriggerInteraction.Collide);
+                // 修正前：Vector3.up * 1.25f
+                // 修正後：
+                bool isNearSurface = !Physics.CheckSphere(transform.position + Vector3.up * WaterSurfaceDetectionHeight, 0.3f, LayerMask.GetMask("Water"), QueryTriggerInteraction.Collide);
                 if (!isJumpPressedNow) _isJumpInputReady = true;
 
                 if (isJumpPressedNow)
@@ -174,10 +212,10 @@ namespace StarterAssets
                 {
                     targetVerticalSpeed = Grounded ? -1.0f : 0f;
 #if ENABLE_INPUT_SYSTEM
-                    if (Keyboard.current != null && Keyboard.current.ctrlKey.isPressed)
+                    if (Keyboard.current != null && Keyboard.current.ctrlKey.isPressed)
                         targetVerticalSpeed = -WaterVerticalSpeed;
 #endif
-                }
+                }
                 _verticalVelocity = Mathf.Lerp(_verticalVelocity, targetVerticalSpeed, Time.deltaTime * WaterVerticalAcceleration);
                 _input.jump = false;
                 return;
@@ -304,19 +342,7 @@ namespace StarterAssets
         {
             _isInWater = false;
             _isJumpInputReady = false;
-
-            if (_hasAnimator)
-            {
-                // 即座に水中フラグを折る
-                _animator.SetBool(_animIDInWater, false);
-
-                // 接地しているなら、現在の地上速度をアニメーターに再設定して
-                // スムーズに「歩き/走り」に移行させる
-                if (Grounded)
-                {
-                    _animator.SetFloat(_animIDSpeed, _animationBlend);
-                }
-            }
+            if (_hasAnimator) _animator.SetBool(_animIDInWater, false);
         }
 
         private void OnTriggerStay(Collider foreign)
@@ -346,8 +372,8 @@ namespace StarterAssets
         {
             if (foreign.gameObject.layer == LayerMask.NameToLayer("Water"))
             {
-                // 接地状態に関わらず、水から出たらモードを終了する
-                ExitWaterMode();
+                // 接地状態に関わらず、水から出たらモードを終了する
+                ExitWaterMode();
             }
         }
 
