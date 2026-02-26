@@ -4740,6 +4740,7 @@ MonoBehaviour:
   Gravity: -35
   MaxJumpHeldTime: 0.4
   TopFloatMultiplier: 0.1
+  TopFloatDuration: 4.5
   FallMultiplier: 2
   JumpCutMultiplier: 1
   AirControl: 0.5
@@ -4749,6 +4750,18 @@ MonoBehaviour:
   GroundLayers:
     serializedVersion: 2
     m_Bits: 1
+  WaterMoveSpeed: 4
+  WaterSprintSpeed: 7
+  WaterVerticalSpeed: 4
+  WaterSurfaceDetectionHeight: 0.98
+  WaterVerticalAcceleration: 10
+  WaterSurfaceOffset: 0.5
+  DefaultColliderHeight: 1.5
+  DefaultColliderCenter: {x: 0, y: 0.4, z: 0}
+  WaterIdleHeight: 1.5
+  WaterIdleCenter: {x: 0, y: 0.4, z: 0}
+  WaterSwimHeight: 0.6
+  WaterSwimCenter: {x: 0, y: 0.4, z: 0}
   JumpTimeout: 0.1
   FallTimeout: 0.15
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
