@@ -16,8 +16,8 @@ TagManager:
   - Enemy
   - ThornyCudgelArea
   - SwimCollider
-  - 
-  - 
+  - PathTrigger
+  - PhantomGround
   - 
   - 
   - 
