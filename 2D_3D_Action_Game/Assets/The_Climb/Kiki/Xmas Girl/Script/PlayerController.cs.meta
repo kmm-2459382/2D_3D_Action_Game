@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e923af2996153434c9c3d00932f0bd12
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 185812
+  packageName: Anime X-mas Girl
+  packageVersion: 1.1
+  assetPath: Assets/Kiki/Xmas Girl/Script/PlayerController.cs
+  uploadId: 425864

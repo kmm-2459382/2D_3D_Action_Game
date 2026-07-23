@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0a6149a22cf8a47a192a60b00b3becb3
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 185812
+  packageName: Anime X-mas Girl
+  packageVersion: 1.1
+  assetPath: Assets/Kiki/Xmas Girl/Script/AutoBlink.cs
+  uploadId: 425864

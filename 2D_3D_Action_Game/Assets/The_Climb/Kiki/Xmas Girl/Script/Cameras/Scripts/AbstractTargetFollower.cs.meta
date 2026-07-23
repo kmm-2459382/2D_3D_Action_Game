@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 89a534d869bfccd49bebf7cb6fb244b6
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 185812
+  packageName: Anime X-mas Girl
+  packageVersion: 1.1
+  assetPath: Assets/Kiki/Xmas Girl/Script/Cameras/Scripts/AbstractTargetFollower.cs
+  uploadId: 425864
