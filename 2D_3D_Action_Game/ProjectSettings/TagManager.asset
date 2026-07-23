@@ -5,6 +5,27 @@ TagManager:
   serializedVersion: 3
   tags:
   - CinemachineTarget
+  - Ground
+  - TrackingObject
+  - FxTemporaire
+  - RespawnArea
+  - Checkpoint
+  - Coin
+  - HiddenObject
+  - Enemy
+  - Lumina
+  - ship
+  - StalkerHand
+  - BreakingWall
+  - Wall
+  - asteroid
+  - Light
+  - SearchItem
+  - CallBell
+  - SanityHealItem
+  - Sword
+  - WhiteBell
+  - Actors
   layers:
   - Default
   - TransparentFX
@@ -13,31 +34,31 @@ TagManager:
   - Water
   - UI
   - Player
-  - Enemy
+  - Buddy
+  - BackGround
+  - Planet
+  - Effects
   - ThornyCudgelArea
-  - SwimCollider
-  - PathTrigger
-  - PhantomGround
   - 
+  - Lumina
+  - Transparent
+  - LightCollider
+  - BlackGround
+  - WhiteGround
+  - BlackOther
+  - WhiteOther
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - LuminaBlock
+  - LuminaMaterial
+  - LuminaEnabler
+  - LuminaLightBall
+  - LuminaPopTrigger
+  - LuminaAppearerTrigger
+  - HiddenObject
+  - BlowingPlayer
+  - Stalker
+  - Bomb
+  - LowGround
   m_SortingLayers:
   - name: Default
     uniqueID: 0
