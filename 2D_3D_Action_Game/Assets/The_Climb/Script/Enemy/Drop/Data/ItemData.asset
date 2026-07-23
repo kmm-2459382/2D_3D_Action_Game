@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e88a9be972be4346b2b310228085edd, type: 3}
+  m_Name: ItemData
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  Name: "\u30B3\u30A2"
+  Icon: {fileID: 0}
+  DropPrefab: {fileID: 2019231029660006990, guid: 4bacd225a7ff5be40acc0097b07ab0e9, type: 3}
+  DropRate: 1

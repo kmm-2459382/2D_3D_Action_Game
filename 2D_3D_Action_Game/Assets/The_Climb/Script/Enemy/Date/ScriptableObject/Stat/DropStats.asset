@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f2f88f3365165d4589fc609479a6c44, type: 3}
+  m_Name: DropStats
+  m_EditorClassIdentifier: 
+  rushSpeed: 15
+  diagonalRushCount: 3
+  pointA_X: -30
+  pointB_X: 30
+  meteorDropSpeed: 30
+  meteorDropCount: 3
+  riseSpeed: 5
+  waitBeforeMeteor: 1
+  hoverHeight: 20
+  aimMoveLeftX: -7
+  aimMoveRightX: 7
+  aimMoveSpeed: 5
+  aimMoveCount: 3
+  groundY: 0

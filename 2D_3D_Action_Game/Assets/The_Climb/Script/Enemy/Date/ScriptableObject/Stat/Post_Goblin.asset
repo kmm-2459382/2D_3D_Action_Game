@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 837f5a775c7734d4fbdcdbdb907dccb2, type: 3}
+  m_Name: Post_Goblin
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
+  ID: 4
+  EnemyName: "\u904E\u53BB\u30B4\u30D6\u30EA\u30F3"
+  Period: "\u904E\u53BB"
+  HP: 0
+  AttackPower: 0
+  Speed: 0
+  EnemyPrefab: {fileID: 1269260959383718644, guid: 6d018a6e28af1a047bbd7b746d953e4f, type: 3}
+  Methods: []
+  Defenses: []
