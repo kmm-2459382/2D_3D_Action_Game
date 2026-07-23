@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2330190194753458114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7420442273053946745}
+  m_Layer: 0
+  m_Name: BigThornyCudgel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7420442273053946745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330190194753458114}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 25561253571236434}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &563080444755441081
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7420442273053946745}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6724985
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.6724985
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.21850802
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.21850802
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7390285454924919727, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3825758dc74dcfa489e4d2283a3b8736, type: 2}
+    - target: {fileID: 919132149155446097, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: m_Name
+      value: BigThornyCudgel (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202271454713460447, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 668f609a7b6e92d44bedeefc1652d7d5, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3704510583423240520}
+  m_SourcePrefab: {fileID: 100100000, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+--- !u!4 &25561253571236434 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+  m_PrefabInstance: {fileID: 563080444755441081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &797453241583454440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 911b319605194aa44b5fb7f922f92c1c, type: 3}
+  m_PrefabInstance: {fileID: 563080444755441081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3704510583423240520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797453241583454440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c50b0624e2669f4397b7cc595038397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialCooldown: 1
+  cooldown1: 1
+  shortStretchDuration: 0.2
+  cooldown2: 1
+  longStretchDuration: 4
+  cooldown3: 1
+  shrinkDuration: 6
+  shortStretchDistance: 2
+  longStretchDistance: 150
+  stretchRotationSpeed: 360
+  shrinkRotationSpeed: 180
