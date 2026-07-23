@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3d1e07626021f456c8b9cf3c2c14aa01
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 18152
+  packageName: Enviroment Effects Shaders
+  packageVersion: 1.0
+  assetPath: Assets/EnviromentEffectsShaders/Materials/Lava.mat
+  uploadId: 7073

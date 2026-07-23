@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f32c0b71d08aa46be93c07554041128a
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 18152
+  packageName: Enviroment Effects Shaders
+  packageVersion: 1.0
+  assetPath: Assets/EnviromentEffectsShaders/Shaders/Moss.shader
+  uploadId: 7073

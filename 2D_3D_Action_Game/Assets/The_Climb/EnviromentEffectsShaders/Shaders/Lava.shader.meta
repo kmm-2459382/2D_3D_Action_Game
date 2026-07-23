@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a90806dbb814f4b28bfcec848fb860bf
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 18152
+  packageName: Enviroment Effects Shaders
+  packageVersion: 1.0
+  assetPath: Assets/EnviromentEffectsShaders/Shaders/Lava.shader
+  uploadId: 7073

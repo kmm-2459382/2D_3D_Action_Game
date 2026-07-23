@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9036bb9133006414485bfe6c63d8e94c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 18152
+  packageName: Enviroment Effects Shaders
+  packageVersion: 1.0
+  assetPath: Assets/EnviromentEffectsShaders/Materials/Snow.mat
+  uploadId: 7073

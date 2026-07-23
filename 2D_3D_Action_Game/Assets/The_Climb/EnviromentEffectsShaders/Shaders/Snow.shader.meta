@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 4fb68fdc82e994339ab4e1a6d3a38e6f
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 18152
+  packageName: Enviroment Effects Shaders
+  packageVersion: 1.0
+  assetPath: Assets/EnviromentEffectsShaders/Shaders/Snow.shader
+  uploadId: 7073

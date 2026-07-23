@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a9c41454c057548c7812104871bef05c
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 18152
+  packageName: Enviroment Effects Shaders
+  packageVersion: 1.0
+  assetPath: Assets/EnviromentEffectsShaders/Shaders/Sand.shader
+  uploadId: 7073
