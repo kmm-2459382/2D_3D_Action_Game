@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ae1b2114780974eae7215d613b72d1, type: 3}
+  m_Name: PlanetAbilityStats
+  m_EditorClassIdentifier: Assembly-CSharp::TheClimb.Astral.PlanetAbilityStatus
+  primaryEffectSpawnTime: 0.2
+  secondaryEffectSpawnTime: 0.4
+  chargeEffectDelay: 0.13
+  chargeCompleteTime: 2
+  repulsiveFouce: 102
