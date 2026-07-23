@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 
 /// <summary>
-/// 光や特定のトリガーに反応して、指定ブロック群の表示・当たり判定を切り替える。
-/// 複数のトリガーコライダーに対応。少なくとも1つが触れている間は有効化され続ける。
+/// 光や特定のトリガーに反応して、指定ブロック群の表示・当たり判定を切り替える（最適化版）
 /// </summary>
 [DisallowMultipleComponent]
-public class TriggerBlockActivator : MonoBehaviour
+public class TriggerBlockActivatorOptimized : MonoBehaviour
 {
     [Header("表示・消失させるターゲット（複数可）")]
     public GameObject[] targetBlocks;
@@ -14,12 +13,14 @@ public class TriggerBlockActivator : MonoBehaviour
     [Header("反応させるレイヤー")]
     public LayerMask detectableLayers;
 
-    // 🔸 各ブロックごとに「何個のコライダーが触れているか」を記録
+    // 各ブロックごとの接触カウンター
     private Dictionary<GameObject, int> activeTriggerCounts = new Dictionary<GameObject, int>();
+
+    // OverlapBoxNonAlloc用の使い回し配列（メモリ割当をゼロにするため）
+    private readonly Collider[] overlapResults = new Collider[10];
 
     private void Start()
     {
-        // ✅ 初期状態：すべて非表示
         if (targetBlocks != null)
         {
             foreach (var block in targetBlocks)
@@ -30,12 +31,13 @@ public class TriggerBlockActivator : MonoBehaviour
             }
         }
 
-        // ✅ Rigidbody確認（Trigger動作用）
+        // 自身がトリガーの場合のRigidbody確認
         Collider col = GetComponent<Collider>();
         if (col != null && col.isTrigger && GetComponent<Rigidbody>() == null)
         {
             Rigidbody rb = gameObject.AddComponent<Rigidbody>();
             rb.isKinematic = true;
+            rb.useGravity = false;
         }
     }
 
@@ -51,9 +53,6 @@ public class TriggerBlockActivator : MonoBehaviour
         UpdateBlockState(false);
     }
 
-    // ------------------------------------------------------
-    // トリガー接触カウントを更新
-    // ------------------------------------------------------
     private void UpdateBlockState(bool isEntering)
     {
         if (targetBlocks == null) return;
@@ -62,7 +61,6 @@ public class TriggerBlockActivator : MonoBehaviour
         {
             if (block == null) continue;
 
-            // カウント更新
             if (!activeTriggerCounts.ContainsKey(block))
                 activeTriggerCounts[block] = 0;
 
@@ -75,21 +73,21 @@ public class TriggerBlockActivator : MonoBehaviour
                 activeTriggerCounts[block] = Mathf.Max(0, activeTriggerCounts[block] - 1);
             }
 
-            // カウント結果に応じて切り替え
             bool shouldBeVisible = activeTriggerCounts[block] > 0;
             SetBlockVisible(block, shouldBeVisible);
 
-            // 無効化前に上のRigidbodyを起こす（消える直前のみ）
+            // ブロックが消える時のみ実行
             if (!shouldBeVisible)
+            {
                 WakeUpObjectsAbove(block);
+            }
         }
     }
 
-    // ------------------------------------------------------
-    // Renderer と Collider を切り替える
-    // ------------------------------------------------------
     private void SetBlockVisible(GameObject block, bool visible)
     {
+        if (block == null) return;
+
         Renderer renderer = block.GetComponent<Renderer>();
         if (renderer != null)
             renderer.enabled = visible;
@@ -99,25 +97,29 @@ public class TriggerBlockActivator : MonoBehaviour
             collider.enabled = visible;
     }
 
-    // ------------------------------------------------------
-    // 上にある Rigidbody を起こす（ブロックが消える時）
-    // ------------------------------------------------------
     private void WakeUpObjectsAbove(GameObject block)
     {
-        Collider[] hits = Physics.OverlapBox(
-            block.transform.position + Vector3.up * 0.5f,
-            new Vector3(0.5f, 0.5f, 0.5f),
-            Quaternion.identity
-        );
+        if (block == null) return;
 
-        foreach (var hit in hits)
+        Vector3 center = block.transform.position + Vector3.up * 0.5f;
+        Vector3 halfExtents = new Vector3(0.5f, 0.5f, 0.5f);
+
+        // 🔸 NonAlloc版を使用し、メモリの新規割り当て（ガベージ）を完全に防ぐ
+        int hitCount = Physics.OverlapBoxNonAlloc(center, halfExtents, overlapResults, Quaternion.identity);
+
+        for (int i = 0; i < hitCount; i++)
         {
+            Collider hit = overlapResults[i];
+            if (hit == null) continue;
+
             Rigidbody rb = hit.attachedRigidbody;
             if (rb != null)
             {
                 rb.WakeUp();
                 rb.AddForce(Vector3.down * 0.01f, ForceMode.VelocityChange);
             }
+            // 配列の参照をクリアしてメモリリークを防ぐ
+            overlapResults[i] = null;
         }
     }
 }

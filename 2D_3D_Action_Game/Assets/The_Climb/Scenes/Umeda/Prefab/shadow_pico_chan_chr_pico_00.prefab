@@ -59,7 +59,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: a6280e3d7d5ea2f489a7b420239f6706, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 5cae03829e3100b4fb7da51578308d6a, type: 2}
+      objectReference: {fileID: 9100000, guid: 21f79f8817c48df46a91a24572694d43, type: 2}
     - target: {fileID: 5866666021909216657, guid: a6280e3d7d5ea2f489a7b420239f6706, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -146,6 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MimicFollower
   delay: 1
-  pushForceUp: 2
-  pushForceForward: 3
+  pushForceUp: 10
+  pushForceForward: 10
   disableControlTime: 0.5

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 [RequireComponent(typeof(Rigidbody))]
 public class MimicFollower : MonoBehaviour
@@ -19,7 +20,7 @@ public class MimicFollower : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         rb.isKinematic = false;
     }
@@ -35,7 +36,7 @@ public class MimicFollower : MonoBehaviour
         if (recorder == null) return;
         if (recorder.HistoryCount <= frameDelay) return;
 
-        if (recorder.TryGetHistory(frameDelay, out var pos, out var rot, out var anim))
+        if (recorder.TryGetHistory(frameDelay, out var pos, out var rot, out var speed, out var motionSpeed, out var grounded, out var jump, out var freeFall, out var inWater))
         {
             // 移動
             rb.MovePosition(pos);
@@ -48,9 +49,21 @@ public class MimicFollower : MonoBehaviour
                 Quaternion targetRot = Quaternion.LookRotation(moveDir);
                 rb.MoveRotation(targetRot);
             }
+            else
+            {
+                rb.MoveRotation(rot);
+            }
 
-            // アニメーション同期
-            animator.Play(anim.shortNameHash, 0, anim.normalizedTime);
+            // アニメーションパラメータの同期
+            if (animator != null)
+            {
+                animator.SetFloat("Speed", speed, 0.1f, Time.fixedDeltaTime);
+                animator.SetFloat("MotionSpeed", motionSpeed, 0.1f, Time.fixedDeltaTime);
+                animator.SetBool("Grounded", grounded);
+                animator.SetBool("Jump", jump);
+                animator.SetBool("FreeFall", freeFall);
+                animator.SetBool("InWater", inWater);
+            }
         }
     }
 
@@ -58,47 +71,71 @@ public class MimicFollower : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        Rigidbody playerRb = other.GetComponent<Rigidbody>();
-        if (playerRb != null)
+        CharacterController playerController = other.GetComponent<CharacterController>();
+        if (playerController != null)
         {
-            // 吹っ飛ばし
-            Vector3 pushDir = (other.transform.position - transform.position).normalized;
-            playerRb.AddForce(Vector3.up * pushForceUp + pushDir * pushForceForward, ForceMode.Impulse);
+            StartCoroutine(PushCharacterControllerPlayer(other.gameObject, playerController));
         }
-
-        // 操作不能処理
-        StartCoroutine(TemporarilyDisablePlayerControl(other.gameObject));
     }
 
-    private IEnumerator TemporarilyDisablePlayerControl(GameObject player)
+    // 吹っ飛ばした瞬間に自然な放物線を描かせるコルーチン
+    private IEnumerator PushCharacterControllerPlayer(GameObject playerObj, CharacterController controller)
     {
-        var move3D = player.GetComponent<PlayerMove3D>();
-        var controller = player.GetComponent<PlayerController>();
-        var playerRb = player.GetComponent<Rigidbody>();
+        var marioController = playerObj.GetComponent<StarterAssets.MarioStyleController>();
+        var move3D = playerObj.GetComponent<PlayerMove3D>();
+        var playerScript = playerObj.GetComponent<PlayerController>();
 
-        // 操作停止
+        // 1. 操作系スクリプトを一時停止
+        if (marioController != null) marioController.enabled = false;
         if (move3D != null) move3D.enabled = false;
-        if (controller != null) controller.enabled = false;
+        if (playerScript != null) playerScript.enabled = false;
 
-        // 半分の時間後に慣性リセット
-        yield return new WaitForSeconds(disableControlTime * 0.7f);
+        Vector3 pushDirection = (controller.transform.position - transform.position).normalized;
+        pushDirection.y = 0f; // 水平方向の押し出し
 
-        if (move3D != null)
+        // 初速の設定
+        float verticalVel = pushForceUp;
+        float currentHorizontalSpeed = pushForceForward;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < disableControlTime)
         {
-            move3D.ResetHorizontalVelocity(0.5f); // Yを半分残す
+            // 空中判定にする
+            if (marioController != null)
+            {
+                marioController.Grounded = false;
+            }
+
+            // 重力による垂直速度の減衰（verticalVel を正しく使用）
+            verticalVel += -30f * Time.deltaTime;
+
+            // 水平方向は少しずつ減速させる（空気抵抗）
+            currentHorizontalSpeed = Mathf.Lerp(currentHorizontalSpeed, 0f, Time.deltaTime * 2f);
+
+            // 移動ベクトルの合成
+            Vector3 moveVector = (pushDirection * currentHorizontalSpeed + Vector3.up * verticalVel) * Time.deltaTime;
+
+            // CharacterControllerで移動
+            controller.Move(moveVector);
+
+            // もし途中で地面に接地したらループを抜ける
+            if (controller.isGrounded && verticalVel < 0f)
+            {
+                break;
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
-        else if (playerRb != null)
+
+        // 2. 操作を復帰させる
+        if (marioController != null)
         {
-            Vector3 v = playerRb.linearVelocity;
-            playerRb.linearVelocity = new Vector3(0f, v.y * 0.5f, 0f);
-            playerRb.angularVelocity = Vector3.zero;
+            marioController.Grounded = true;
+            marioController.enabled = true;
         }
-
-        // 残りの操作不能時間待機
-        yield return new WaitForSeconds(disableControlTime * 0.3f);
-
-        // 操作再開
         if (move3D != null) move3D.enabled = true;
-        if (controller != null) controller.enabled = true;
+        if (playerScript != null) playerScript.enabled = true;
     }
 }
