@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3d2c992c53f15c949b6c924247a2b990
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 189939
+  packageName: Dynamic Vertical Fog
+  packageVersion: 1.1
+  assetPath: Assets/Settings/SampleSceneProfile.asset
+  uploadId: 442650

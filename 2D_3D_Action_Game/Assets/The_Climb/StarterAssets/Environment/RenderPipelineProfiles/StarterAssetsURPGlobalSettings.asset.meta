@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9e2aa9e37b7aacc459f2de6c402a6f5b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 196526
+  packageName: Starter Assets - ThirdPerson | Updates in new CharacterController
+    package
+  packageVersion: 1.1.5
+  assetPath: Assets/StarterAssets/Environment/RenderPipelineProfiles/StarterAssetsURPGlobalSettings.asset
+  uploadId: 691128
