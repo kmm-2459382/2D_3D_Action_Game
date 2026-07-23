@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b4f0bc791b31a934fbd64ebd0666f2ed
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 220038
+  packageName: PicoChan
+  packageVersion: 1.1.0
+  assetPath: Assets/Img/Player/Picola/PicoChan/Materials/pico_hair_m.mat
+  uploadId: 697236

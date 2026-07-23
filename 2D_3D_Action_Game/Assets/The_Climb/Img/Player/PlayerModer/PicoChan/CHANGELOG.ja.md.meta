@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ec68754b89fd4a64980110738ea30abe
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 220038
+  packageName: PicoChan
+  packageVersion: 1.1.0
+  assetPath: Assets/Img/Player/Picola/PicoChan/CHANGELOG.ja.md
+  uploadId: 697236
