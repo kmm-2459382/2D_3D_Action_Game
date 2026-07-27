@@ -66,11 +66,11 @@ public class PlayerRespawnUmeda : MonoBehaviour
             }
         }
 
-        // デバッグ用：PキーまたはRキーでリスポーン
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.R))
-        {
-            Respawn();
-        }
+        //// デバッグ用：PキーまたはRキーでリスポーン
+        //if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.R))
+        //{
+        //    Respawn();
+        //}
     }
 
     public void Respawn()
