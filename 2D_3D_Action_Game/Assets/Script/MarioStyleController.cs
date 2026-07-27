@@ -151,8 +151,29 @@ namespace StarterAssets
             bool isAboveSurface = !Physics.CheckSphere(transform.position + Vector3.up * surfaceHeightOffset, 0.1f, LayerMask.GetMask("Water"), QueryTriggerInteraction.Collide);
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
             bool wasGrounded = Grounded;
-            Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+            Collider[] hitColliders = Physics.OverlapSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+            bool isGroundedOnValidMesh = false;
 
+            foreach (var col in hitColliders)
+            {
+                // メッシュコライダーの場合、sharedMeshが割り当てられている（＝可視化されている）場合のみ足場とする
+                if (col is MeshCollider meshCol)
+                {
+                    if (meshCol.sharedMesh != null && meshCol.sharedMesh.vertexCount > 0)
+                    {
+                        isGroundedOnValidMesh = true;
+                        break;
+                    }
+                }
+                else
+                {
+                    // MeshCollider 以外（通常のBoxCollider等）ならそのまま着地を認める
+                    isGroundedOnValidMesh = true;
+                    break;
+                }
+            }
+
+            Grounded = isGroundedOnValidMesh;
             if (_hasAnimator)
             {
                 bool animatorGrounded = (_isInWater && !isAboveSurface) ? false : Grounded;
