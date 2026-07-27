@@ -429,56 +429,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63b95543cc9e7ef429355ebdb88e31de, type: 3}
---- !u!1 &20726698
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 20726699}
-  - component: {fileID: 20726700}
-  m_Layer: 0
-  m_Name: LuminaTerrainManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &20726699
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20726698}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &20726700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20726698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3871a68118c6a6345809fec399f27ae5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LuminaTerrainManager
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  triggerLayer:
-    serializedVersion: 2
-    m_Bits: 67108864
 --- !u!1001 &25236785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7166,7 +7116,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2105541744}
   - {fileID: 558193532}
   - {fileID: 707568964}
   - {fileID: 2080649124}
@@ -12015,7 +11964,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749303848}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 624a36813bbecda419fbc193c937dab8, type: 3}
   m_Name: 
@@ -31160,53 +31109,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1579976642873756973, guid: 63b95543cc9e7ef429355ebdb88e31de, type: 3}
   m_PrefabInstance: {fileID: 2103973810}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2105541742
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2105541744}
-  - component: {fileID: 2105541743}
-  m_Layer: 0
-  m_Name: AreaManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2105541743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2105541742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80a4bf18c886a174eb62bbaa4f0b9cde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AreaManager
-  targetMaterials:
-  - {fileID: 2100000, guid: c295b0dab9493d346af2c9ef9a15bf81, type: 2}
-  - {fileID: 2100000, guid: 824edaede2403d441b4136b012ccf66d, type: 2}
---- !u!4 &2105541744
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2105541742}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 423711426}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2108551430 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1579976642873756973, guid: 63b95543cc9e7ef429355ebdb88e31de, type: 3}
@@ -45618,7 +45520,6 @@ GameObject:
   - component: {fileID: 5800826566887551384}
   - component: {fileID: 8706820433624381437}
   - component: {fileID: 1889722265202932830}
-  - component: {fileID: 8749400043677562345}
   - component: {fileID: 8749400043677562343}
   - component: {fileID: 7219959303951731900}
   - component: {fileID: 1084354568258582692}
@@ -45720,7 +45621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8411540614836553874
 Transform:
   m_ObjectHideFlags: 0
@@ -46014,27 +45915,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8749400043677562345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8310969636460437585}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46e7b0366a931ff4783652954fa12df0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FlexiblePathWalker
-  phantomLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  triggerLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  groundCheckDistance: 0.6
-  wallCheckDistance: 0.4
-  triggerCheckRadius: 0.2
 --- !u!114 &8749400043677562346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46062,7 +45942,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8310969636460437585}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cb05f49d06f866468ad7045b6b45f66, type: 3}
   m_Name: 
@@ -46778,4 +46658,3 @@ SceneRoots:
   - {fileID: 1323544132}
   - {fileID: 267200641}
   - {fileID: 1143519146}
-  - {fileID: 20726699}
