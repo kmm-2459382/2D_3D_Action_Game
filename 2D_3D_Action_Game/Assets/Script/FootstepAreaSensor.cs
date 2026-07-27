@@ -10,9 +10,6 @@ public class FootstepAreaSensor : MonoBehaviour
     [Header("Sensor Settings")]
     [SerializeField] private float sensorRadius = 0.2f;
     [SerializeField] private Vector3 sensorOffset = new Vector3(0f, 0.05f, 0f);
-
-    [Header("Performance")]
-    [Tooltip("チェックの実行間隔（秒）。0.05〜0.1くらいがおすすめ")]
     [SerializeField] private float checkInterval = 0.05f;
 
     private CharacterController _controller;
@@ -51,11 +48,17 @@ public class FootstepAreaSensor : MonoBehaviour
 
             if (_isInAppearArea)
             {
+                // エリア内：通常通り地面に乗れる
                 _controller.excludeLayers &= ~groundLayer;
             }
             else
             {
+                // エリア外に出た瞬間：地面をすり抜けさせる
                 _controller.excludeLayers |= groundLayer;
+
+                // ★追加: エリア外に出た瞬間に横方向の引っかかりを消すため、
+                // 少しだけ強制的に下方向へ押し出す（または慣性を断ち切る）
+                _controller.Move(Vector3.down * 0.1f);
             }
         }
     }
