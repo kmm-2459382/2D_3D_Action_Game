@@ -14363,8 +14363,6 @@ MonoBehaviour:
   GroundLayers:
     serializedVersion: 2
     m_Bits: 2056
-  PhantomGroundCheckDistance: 1
-  TriggerCheckRadius: 0.3
   WaterMoveSpeed: 4
   WaterSprintSpeed: 7
   WaterVerticalSpeed: 4

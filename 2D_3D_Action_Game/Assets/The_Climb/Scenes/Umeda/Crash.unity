@@ -1286,10 +1286,12 @@ MonoBehaviour:
   skillIconImage: {fileID: 1467575723}
   umedaSkillSprite: {fileID: 21300000, guid: f5f1f2384760e91469310e1a8c25a462, type: 3}
   kitanoSkillSprite: {fileID: 21300000, guid: d026fc01b7a105c4f9f9104f3dca071c, type: 3}
+  Skillstook: {fileID: 0}
   nisiyamaSkillSprite: {fileID: 21300000, guid: 92d52c9094a07cb4c96fb7fc11a76d7e, type: 3}
   umedaCooldownGauge: {fileID: 1538446676}
   kitanoCooldownGauge: {fileID: 1812866294}
   nisiyamaCooldownGauge: {fileID: 1954725846}
+  nextSkillIconImage: {fileID: 0}
   abilityManager: {fileID: 765738108}
   skillPlatformSpawner: {fileID: 0}
   gravityFlipManager: {fileID: 765738106}

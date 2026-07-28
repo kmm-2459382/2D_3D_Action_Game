@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: SceneGizmoOverlay
   m_Shader: {fileID: 4800000, guid: 9b5aa261e057b6a4e97f0cfb777f1ec2, type: 3}
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 2100000, guid: ce49d6e79bc8c2b40aedae60a1437601, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []

@@ -428,6 +428,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 8327100350605457439}
   m_maskType: 0
+--- !u!1 &5072237609894414765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 9027514048236820045, guid: effb650189dc5714e9e9801b1cfb3991, type: 3}
+  m_PrefabInstance: {fileID: 4263810473794936800}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5072237609894414762}
+  m_Layer: 0
+  m_Name: 'CFXR Electrified 3 (Missing Prefab with guid: effb650189dc5714e9e9801b1cfb3991)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5072237609894414762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 9027514048236820042, guid: effb650189dc5714e9e9801b1cfb3991, type: 3}
+  m_PrefabInstance: {fileID: 4263810473794936800}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072237609894414765}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000059604645, y: -0.7071068, z: -0.000000059604645, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1638314, y: 0.16383143, z: 0.16383141}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 146356621777852036}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &8650649013814523906
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +491,37 @@ Transform:
   - {fileID: 6444194247969897356}
   - {fileID: 146356621777852036}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8871121451412467937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1141330259687333427, guid: 6718dc24203da53468af9ada8fef7d6d, type: 3}
+  m_PrefabInstance: {fileID: 8415640178598145746}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8871121451412467938}
+  m_Layer: 0
+  m_Name: 'CFXR3 Hit Electric C (Air) (Missing Prefab with guid: 6718dc24203da53468af9ada8fef7d6d)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8871121451412467938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1141330259687333424, guid: 6718dc24203da53468af9ada8fef7d6d, type: 3}
+  m_PrefabInstance: {fileID: 8415640178598145746}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8871121451412467937}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.50000006, y: -0.50000006, z: 0.49999997, w: -0.49999994}
+  m_LocalPosition: {x: 0.0000010548, y: 0.0000010548, z: -0.00000086804}
+  m_LocalScale: {x: 4.8890605, y: 4.8890605, z: 4.8890605}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 146356621777852036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4263810473794936800
 PrefabInstance:
@@ -578,16 +640,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: effb650189dc5714e9e9801b1cfb3991, type: 3}
---- !u!4 &5072237609894414762 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9027514048236820042, guid: effb650189dc5714e9e9801b1cfb3991, type: 3}
-  m_PrefabInstance: {fileID: 4263810473794936800}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5072237609894414765 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9027514048236820045, guid: effb650189dc5714e9e9801b1cfb3991, type: 3}
-  m_PrefabInstance: {fileID: 4263810473794936800}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8415640178598145746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -713,13 +765,3 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6718dc24203da53468af9ada8fef7d6d, type: 3}
---- !u!1 &8871121451412467937 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1141330259687333427, guid: 6718dc24203da53468af9ada8fef7d6d, type: 3}
-  m_PrefabInstance: {fileID: 8415640178598145746}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8871121451412467938 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1141330259687333424, guid: 6718dc24203da53468af9ada8fef7d6d, type: 3}
-  m_PrefabInstance: {fileID: 8415640178598145746}
-  m_PrefabAsset: {fileID: 0}

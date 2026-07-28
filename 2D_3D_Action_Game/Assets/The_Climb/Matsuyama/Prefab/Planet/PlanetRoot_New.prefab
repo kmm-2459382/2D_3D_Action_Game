@@ -485,6 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TheClimb.Astral.PlanetBootstrap
   controller: {fileID: 5731303559006045362}
+  stageClear: {fileID: 0}
   playerTransform: {fileID: 0}
   playerRigidBody: {fileID: 0}
 --- !u!114 &5643664399545878258
@@ -658,6 +659,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 199940970818216614, guid: f9a741bb8762344c6a2a9cb4217ef728, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -687,6 +692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TheClimb.Astral.PlanetBootstrap
   controller: {fileID: 5440546851590307925}
+  stageClear: {fileID: 0}
   playerTransform: {fileID: 0}
   playerRigidBody: {fileID: 0}
 --- !u!114 &5440546851590307925

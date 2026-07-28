@@ -11445,7 +11445,7 @@ MonoBehaviour:
   - {fileID: 1291340629}
   - {fileID: 1693502240}
   maxHeightFromCheckpoint: 30
-  fallDistanceFromCheckpoint: 20
+  maxFallFromCheckpoint: 20
   switchesToReset: []
 --- !u!114 &1457587925 stripped
 MonoBehaviour:

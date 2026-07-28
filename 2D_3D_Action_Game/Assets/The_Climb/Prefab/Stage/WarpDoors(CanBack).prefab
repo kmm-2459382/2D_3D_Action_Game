@@ -49,6 +49,10 @@ PrefabInstance:
       propertyPath: canGoBack
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1797347689010584653, guid: 5e8db00ff99c75841a16b7a5572c32e1, type: 3}
+      propertyPath: goToWhere
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4837710181522491020, guid: 5e8db00ff99c75841a16b7a5572c32e1, type: 3}
       propertyPath: m_Name
       value: WarpDoor (2)
@@ -128,6 +132,10 @@ PrefabInstance:
     - target: {fileID: 1797347689010584653, guid: 5e8db00ff99c75841a16b7a5572c32e1, type: 3}
       propertyPath: canGoBack
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1797347689010584653, guid: 5e8db00ff99c75841a16b7a5572c32e1, type: 3}
+      propertyPath: goToWhere
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4837710181522491020, guid: 5e8db00ff99c75841a16b7a5572c32e1, type: 3}
       propertyPath: m_Name

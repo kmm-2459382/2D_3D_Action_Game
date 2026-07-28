@@ -260,13 +260,14 @@ GameObject:
   - component: {fileID: 4965536632445529719}
   - component: {fileID: 5734296594383694711}
   - component: {fileID: 8436972849776822168}
+  - component: {fileID: 2717711991655898948}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &287826763580631330
 Transform:
   m_ObjectHideFlags: 0
@@ -315,8 +316,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5a7a844934cb6904aaabca78962ea37b, type: 2}
-  - {fileID: 2100000, guid: a210c96b60edb8f4fa6105245ebd72f5, type: 2}
+  - {fileID: 2100000, guid: ce49d6e79bc8c2b40aedae60a1437601, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -360,3 +360,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2717711991655898948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8233366962190174432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da244f58cec4b9e4093bfacf9132ad8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneOnlyDrawer

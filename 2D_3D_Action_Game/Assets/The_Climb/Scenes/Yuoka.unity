@@ -510,17 +510,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b50730108006d704eb454de1374bac43, type: 3}
---- !u!114 &520269788 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 435736458721656458, guid: b50730108006d704eb454de1374bac43, type: 3}
-  m_PrefabInstance: {fileID: 520269787}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58f72696b2727a94fb882aaf85828d6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageClear
 --- !u!114 &649211719 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114989729109574022, guid: b50730108006d704eb454de1374bac43, type: 3}
@@ -2116,7 +2105,7 @@ PrefabInstance:
     - target: {fileID: 171316899582419656, guid: cff7c5216391b384a8a88e0fb7c310e3, type: 3}
       propertyPath: stageClear
       value: 
-      objectReference: {fileID: 520269788}
+      objectReference: {fileID: 0}
     - target: {fileID: 1175180237484769826, guid: cff7c5216391b384a8a88e0fb7c310e3, type: 3}
       propertyPath: m_IsActive
       value: 1

@@ -122,6 +122,7 @@ MonoBehaviour:
   prevButton: {fileID: 7216262241126154087}
   closeButton: {fileID: 6274096802162546013}
   tutorialPanel: {fileID: 6814078098049670553}
+  canvasToHide: {fileID: 0}
 --- !u!1 &2067457544011052250
 GameObject:
   m_ObjectHideFlags: 0
