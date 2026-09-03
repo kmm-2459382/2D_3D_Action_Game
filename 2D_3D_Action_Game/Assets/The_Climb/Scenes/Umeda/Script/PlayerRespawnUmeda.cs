@@ -65,12 +65,6 @@ public class PlayerRespawnUmeda : MonoBehaviour
                 Respawn();
             }
         }
-
-        //// デバッグ用：PキーまたはRキーでリスポーン
-        //if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.R))
-        //{
-        //    Respawn();
-        //}
     }
 
     public void Respawn()
@@ -86,11 +80,24 @@ public class PlayerRespawnUmeda : MonoBehaviour
         {
             characterController.enabled = false; // 一度無効化して位置を強制転送
             transform.position = currentRespawnPoint.position;
+            transform.rotation = currentRespawnPoint.rotation; // 向きもリセット
+
+            // 落下時に床の除外レイヤーが設定されたままの場合はクリア
+            characterController.excludeLayers = 0;
+
             characterController.enabled = true;  // 再有効化
         }
         else
         {
             transform.position = currentRespawnPoint.position;
+            transform.rotation = currentRespawnPoint.rotation;
+        }
+
+        // MarioStyleController の速度・慣性をリセット
+        var marioController = GetComponent<StarterAssets.MarioStyleController>();
+        if (marioController != null)
+        {
+            marioController.ResetVelocity();
         }
 
         // 外部コンポーネント（存在する場合のみ安全にリセット処理を呼び出し）

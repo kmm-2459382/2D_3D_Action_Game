@@ -354,6 +354,27 @@ namespace StarterAssets
             if (_hasAnimator) _animator.SetBool(_animIDInWater, false);
         }
 
+        /// <summary>
+        /// リスポーン時などにプレイヤーの水平・垂直の慣性や速度をリセットする
+        /// </summary>
+        public void ResetVelocity()
+        {
+            _verticalVelocity = 0.0f;
+            _horizontalVelocity = Vector3.zero;
+            _speed = 0.0f;
+            _animationBlend = 0.0f;
+            _turnStopTimer = 0.0f;
+            _isJumpProcessing = false;
+            _isJumpInputReady = true;
+
+            if (_hasAnimator)
+            {
+                _animator.SetFloat(_animIDSpeed, 0.0f);
+                _animator.SetBool(_animIDJump, false);
+                _animator.SetBool(_animIDFreeFall, false);
+            }
+        }
+
         private void OnTriggerStay(Collider foreign)
         {
             if (foreign.gameObject.layer == LayerMask.NameToLayer("Water"))
