@@ -152,6 +152,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6808249509038112600, guid: 8bffb9ed754096f4b9eb3d1adb30985b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6808249509038112600, guid: 8bffb9ed754096f4b9eb3d1adb30985b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6808249509038112600, guid: 8bffb9ed754096f4b9eb3d1adb30985b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ce49d6e79bc8c2b40aedae60a1437601, type: 2}
     - target: {fileID: 7469574203888004952, guid: 8bffb9ed754096f4b9eb3d1adb30985b, type: 3}
       propertyPath: m_Name
       value: LuminaTriggerCollider
@@ -159,8 +171,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9181584243575847692, guid: 8bffb9ed754096f4b9eb3d1adb30985b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2576724496246211769}
   m_SourcePrefab: {fileID: 100100000, guid: 8bffb9ed754096f4b9eb3d1adb30985b, type: 3}
+--- !u!1 &2588924675706975480 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9181584243575847692, guid: 8bffb9ed754096f4b9eb3d1adb30985b, type: 3}
+  m_PrefabInstance: {fileID: 6667086115954528244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2576724496246211769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2588924675706975480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da244f58cec4b9e4093bfacf9132ad8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneOnlyDrawer
 --- !u!4 &8474051649767930800 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2963331636693988420, guid: 8bffb9ed754096f4b9eb3d1adb30985b, type: 3}

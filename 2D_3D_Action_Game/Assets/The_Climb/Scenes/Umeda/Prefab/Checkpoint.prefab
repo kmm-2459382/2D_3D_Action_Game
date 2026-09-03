@@ -493,6 +493,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Area_circles_blue
       objectReference: {fileID: 0}
+    - target: {fileID: 8916116809158218653, guid: e5b0b33ed9acd674c8d4252d27354020, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
