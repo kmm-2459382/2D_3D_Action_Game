@@ -68550,8 +68550,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 67108864
   sensorRadius: 0.28
-  sensorOffset: {x: 0, y: 0.23, z: 0}
   checkInterval: 0.05
+  sensorOffsets:
+  - {x: 0.2, y: 0.05, z: 0.2}
+  - {x: -0.2, y: 0.05, z: 0.2}
+  - {x: 0.2, y: 0.05, z: -0.2}
+  - {x: -0.2, y: 0.05, z: -0.2}
+  requireAllSensors: 0
 --- !u!1 &8757884682696325353
 GameObject:
   m_ObjectHideFlags: 0
