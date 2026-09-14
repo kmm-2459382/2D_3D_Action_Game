@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(Renderer), typeof(Collider))]
+[RequireComponent(typeof(Renderer))]
 [DisallowMultipleComponent]
 public class LuminaGroundController : MonoBehaviour
 {
@@ -18,10 +18,11 @@ public class LuminaGroundController : MonoBehaviour
     public Color baseColor = Color.white;
     public Color emissionColor = Color.white;
 
+    [Header("検知範囲（半径）")]
+    public float detectionRadius = 10.0f;
+
     private Renderer rend;
     private MaterialPropertyBlock block;
-
-    private Queue<Collider> lightQueue = new Queue<Collider>(); // 登録順保持
     private readonly Vector3 invalidPos = new Vector3(9999f, 9999f, 9999f);
 
     void Start()
@@ -34,20 +35,22 @@ public class LuminaGroundController : MonoBehaviour
     {
         rend.GetPropertyBlock(block);
 
+        // コライダーの代わりにPhysics.OverlapSphereで周囲の光源を検知
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius, lightLayer);
+
         int index = 0;
-        foreach (var light in lightQueue)
+        foreach (var lightCol in hitColliders)
         {
             if (index >= maxLights) break;
-            if (light != null)
+            if (lightCol != null)
             {
-                Vector3 pos = light.bounds.center;
+                Vector3 pos = lightCol.bounds.center;
                 block.SetVector($"_LightPos{index}", new Vector4(pos.x, pos.y, pos.z, 1f));
 
-                // コライダーのサイズに応じて半径を設定
-                SphereCollider sc = light.GetComponent<SphereCollider>();
+                SphereCollider sc = lightCol.GetComponent<SphereCollider>();
                 if (sc != null)
                 {
-                    float outer = sc.radius * light.transform.lossyScale.x;
+                    float outer = sc.radius * lightCol.transform.lossyScale.x;
                     float inner = outer * 0.5f;
                     block.SetFloat($"_OuterRadius{index}", outer);
                     block.SetFloat($"_InnerRadius{index}", inner);
@@ -73,35 +76,5 @@ public class LuminaGroundController : MonoBehaviour
         block.SetColor("_EmissionColor", emissionColor);
 
         rend.SetPropertyBlock(block);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (((1 << other.gameObject.layer) & lightLayer) == 0) return;
-
-        if (lightQueue.Contains(other)) return;
-
-        if (lightQueue.Count >= maxLights)
-        {
-            Collider old = lightQueue.Dequeue();
-            //Debug.Log($"[LuminaGround] Light dequeued: {old?.name}");
-        }
-
-        lightQueue.Enqueue(other);
-        //Debug.Log($"[LuminaGround] Light entered: {other.name}");
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (!lightQueue.Contains(other)) return;
-
-        Queue<Collider> newQueue = new Queue<Collider>();
-        foreach (var l in lightQueue)
-        {
-            if (l != other) newQueue.Enqueue(l);
-        }
-        lightQueue = newQueue;
-
-        //Debug.Log($"[LuminaGround] Light exited: {other.name}");
     }
 }
